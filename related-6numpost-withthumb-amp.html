@@ -51,7 +51,7 @@ var labelArray = [],
     relatedPostConfig = {
 		homePage: getQueryVariable("url"),
         numPosts: 6,
-        summaryLength: 100,
+        summaryLength: 0,
         widgetStyle: 3,
         callBack: function() {
             var $container = $('#' + this.containerId + ' > ul'),
@@ -67,7 +67,21 @@ var labelArray = [],
                 "height": innerHeight,
                 "overflow": "hidden"
             });
-
+            // Animation
+            function newsTicker() {
+                window.setTimeout(function() {
+                    $container.find('li:last').stop().animate({
+                        opacity: 0
+                    }, 100000, function() {
+                        $(this).hide().prependTo($container).slideDown(1000, function() {
+                            $(this).stop().animate({
+                                opacity: 1
+                            }, 100000, newsTicker);
+                        });
+                    });
+                }, 300000);
+            } newsTicker();
+        }
     };
 </script>
 <script>
