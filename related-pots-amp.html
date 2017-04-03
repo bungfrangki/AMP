@@ -18,6 +18,19 @@ a:hover {color:#4588f3}
 .recent-posts{font-family: 'Roboto', sans-serif;margin:0 auto;padding:0;font-size:13px;text-align:left;box-sizing:border-box}
 
 </style>
+  <script>
+function getQueryVariable(variable) {
+	var query = window.location.search.substring(1);
+	var vars = query.split("&");
+	for (var i=0;i<vars.length;i++) {
+		var pair = vars[i].split("=");
+		if(pair[0] == variable){return pair[1];}
+	}
+	return(false);
+}
+var domain = getQueryVariable("url");
+var colorlink = getQueryVariable("color");
+</script>
 </head>
 <body>
 <ul id="recent-posts"></ul>
